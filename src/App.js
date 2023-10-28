@@ -1,27 +1,38 @@
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import TypingTest from './components/TypingTest';
-import ScoreSummary from './components/ScoreSummary';
-import Footer from './components/Footer';
-import Login from './components/User/login';
-import Signup from './components/User/signup';
-import './App.css';
+import React, { useState } from "react";
+import Signup from "./components/User/signup";
+import Login from "./components/User/login";
+import Navbar from "./components/Navbar";
+import Tyingbox from "./components/TypingBox";
+import Footer from "./components/Footer";
+
+import "./App.css";
+//import "./fonts.css";
 
 function App() {
+  const [showLoginPage, setShowLoginPage] = useState(false);
+  const [showSignupPage, setShowSignupPage] = useState(false);
+
+  const handleIconClick = () => {
+    setShowLoginPage(true);
+    setShowSignupPage(true);
+  };
   return (
-    <Router>
-      <div className="App">
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<TypingTest />} />
-          <Route path="/score-summary" element={<ScoreSummary />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<Signup />} />
-        </Routes>
-        <Footer />
-      </div>
-    </Router>
+    <div className="App">
+      <Navbar onUserIconClick={handleIconClick} />
+      {showLoginPage && (
+        <div className="login-overlay">
+          <Login />
+        </div>
+      )}
+      {showSignupPage && (
+        <div className="login-overlay">
+          <Signup />
+        </div>
+      )}
+
+      <Tyingbox />
+      <Footer />
+    </div>
   );
 }
 

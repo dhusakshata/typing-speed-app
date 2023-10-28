@@ -1,15 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Footer = () => {   
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+import { GrMail } from "react-icons/gr";
+import { FaInstagram } from "react-icons/fa";
+
+const Footer = () => {
+  const [selectedcolor, setSelectedColor] = useState("black");
+  const handleColorChange = (e) => {
+    setSelectedColor((document.body.style.backgroundColor = e.target.value));
+  };
   return (
-    <div> 
-      <div className="links">
-        <a href="#"><img src='https://cdn-icons-png.flaticon.com/128/10090/10090320.png' alt='git' height='40'/></a>
-        <a href="#"><img src='https://cdn-icons-png.flaticon.com/128/10090/10090300.png' alt='linkdin' height='40'/></a>
-        <a href="#"><img src='https://cdn-icons-png.flaticon.com/128/10308/10308979.png' alt='mail' height='40'/></a>
-        <a href="#"><img src='https://cdn-icons-png.flaticon.com/128/2504/2504918.png' alt='insta' height='40'/></a>
+    <div className="footersection">
+      <div className="icons">
+        <FaGithub size={30} color="white" />
+        <FaLinkedin size={30} color="white" />
+        <GrMail size={30} color="white" />
+        <FaInstagram size={30} color="white" />
       </div>
-      <div className="theme">theme</div>
+
+      <div className="colorchange">
+        <select id="themecolor" onChange={handleColorChange}>
+          <option value="black">Black</option>
+          <option value="lightblue">Light-Blue</option>
+          <option value="green">Green</option>
+          <option value="lightgray">Gray</option>
+          <option value="lightpink">Light-Pink</option>
+          <option value="yellow">Light-yellow</option>
+        </select>
+        {/* <div
+          className="themecontent"
+          style={{ backgroundColor: selectedcolor }}
+        >
+          <p>Hello my name is Anamika</p>
+        </div> */}
+      </div>
     </div>
   );
 };

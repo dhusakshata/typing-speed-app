@@ -1,13 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Signup = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
-  const handleNameChange = (e) => {
-    setName(e.target.value);
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -17,63 +13,58 @@ const Signup = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleConfirmPasswordChange = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const handleSignup = (e) => {
     e.preventDefault();
-    
-    // Here you can add logic to submit the signup data to the server for user registration
-    try {
-      // Example: Send signup data to the server
-      const response = await fetch('/api/signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ name, email, password }),
-      });
-      
-      // Handle the server response here, e.g., redirect the user if registration is successful
-      if (response.status === 201) {
-        // Redirect the user to the login page or another page
-      } else {
-        // Handle registration error, e.g., show an error message
-      }
-    } catch (error) {
-      // Handle network or other errors
-      console.error('Signup error:', error);
-    }
+
+    // Perform signup logic here, e.g., sending a request to a server
+    // Check if the email, password, and confirmPassword are valid
+    // If valid, create a new user account
   };
 
   return (
-    <div className="signup">
+    <div className="signup-component">
       <h2>Sign Up</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSignup}>
         <div className="form-group">
-          <label>Name:</label>
-          <input
-            type="text"
-            value={name}
-            onChange={handleNameChange}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Email:</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
+            id="email"
             value={email}
             onChange={handleEmailChange}
+            placeholder="Enter your email"
             required
           />
         </div>
+
         <div className="form-group">
-          <label>Password:</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
+            id="password"
             value={password}
             onChange={handlePasswordChange}
+            placeholder="Enter your password"
             required
           />
         </div>
+
+        <div className="form-group">
+          <label htmlFor="confirmPassword">Confirm Password</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+            placeholder="Re-enter your password"
+            required
+          />
+        </div>
+
         <button type="submit">Sign Up</button>
       </form>
     </div>

@@ -1,31 +1,27 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import usericon from './images/th.jpg';
+import React, { useState } from "react";
 
-const Navbar = () => {
-  const [showLinks, setShowLinks] = useState(false);
+import { FaUser } from "react-icons/fa";
 
-  const toggleLinks = () => {
-    setShowLinks(!showLinks);
+const Navbar = ({ onUserIconClick }) => {
+  const [showWords, setShowwords] = useState(true);
+
+  const showLoginPage = () => {
+    setShowwords(false);
   };
-
+  const showSignupPage = () => {
+    setShowwords(false);
+  };
   return (
-    
-    <div className='navsection'>
-
-<div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+    <div class="navbarnew">
       <h1>TypeCat</h1>
-      <img src={usericon} alt="user" onClick={toggleLinks} />
-
-</div>
-      {showLinks && (
-        <div className="nav-links">
-          <Link to="/login">Login</Link>
-          <Link to="/signup">Sign Up</Link>
+      {/* {showWords && (
+        <div>
+          <span onClick={showLoginPage}>Login</span>
+          <span onClick={showSignupPage}>Signup</span>
         </div>
-      )}
+      )} */}
+      <FaUser size={40} color="white" onClick={onUserIconClick} />
     </div>
   );
-}
-
+};
 export default Navbar;

@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
@@ -12,55 +12,43 @@ const Login = () => {
     setPassword(e.target.value);
   };
 
-  const handleSubmit = async (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
-    
-   
-    try {
-      // Example: Send login data to the server
-      const response = await fetch('/api/login', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, password }),
-      });
-      
-      
-      if (response.status === 200) {
-       
-      } else {
-        
-      }
-    } catch (error) {
-      // Handle network or other errors
-      console.error('Login error:', error);
-    }
+
+    // Perform authentication logic here, e.g., sending a request to a server
+    // Check if the email and password are valid
+    // If valid, redirect to the user's dashboard or perform other actions
   };
 
   return (
-    <div className="login">
+    <div className="login-page">
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleLogin}>
         <div className="form-group">
-          <label>Email:</label>
+          <label htmlFor="email">Email</label>
           <input
             type="email"
+            id="email"
             value={email}
             onChange={handleEmailChange}
+            placeholder="Enter your email"
             required
           />
         </div>
+
         <div className="form-group">
-          <label>Password:</label>
+          <label htmlFor="password">Password</label>
           <input
             type="password"
+            id="password"
             value={password}
             onChange={handlePasswordChange}
+            placeholder="Enter your password"
             required
           />
         </div>
-        <button type="submit"> Login</button>
+
+        <button type="submit">Login</button>
       </form>
     </div>
   );
